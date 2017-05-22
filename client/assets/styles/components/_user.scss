@@ -1,0 +1,100 @@
+.user {
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    cursor: pointer;
+    height: 100%;
+    transition: background-color $transition-time;
+    position: relative;
+
+    &__icon {
+        width: 32px;
+        height: 32px;
+        margin-right: 17px;
+        display: inline-block;
+    }
+    &__name {
+        font-family: $medium;
+        color: #ffffff;
+        @include font-size(16px);
+        font-weight: 500;
+        position: relative;
+
+        &:after {
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 4px solid #ffffff;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px;
+            position: relative;
+            top: -1px;
+        }
+    }
+    &__dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.1), 0px 5px 5px -5px rgba(0, 0, 0, .2) inset;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+
+    &:hover {
+        background-color: #363e5d;
+
+        .user__dropdown {
+            display: block;
+        }
+    }
+}
+
+.user-options {
+    &__list {
+        margin: 10px 0;
+        padding: 0 24px;
+    }
+    &__item {
+        list-style-type: none;
+        border-bottom: 1px solid #f0f1f2;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+    &__link {
+        padding: 14px 0;
+        display: flex;
+        align-items: center;
+        @include font-size(16px);
+        font-family: $medium;
+        color: #86939e;
+        text-decoration: none;
+        transition: color $transition-time;
+
+        &:hover {
+            color: $primary-color;
+        }
+    }
+    [class*="icon"] {
+        display: inline-block;
+        margin-right: 15px;
+        width: 20px;
+        height: 20px;
+    }
+    .dollar-icon {
+        background: url("../images/dollar.jpg") no-repeat;
+    }
+    .gear-icon {
+        background: url("../images/gear.jpg") no-repeat;
+    }
+    .out-icon {
+        background: url("../images/out.jpg") no-repeat;
+    }
+}

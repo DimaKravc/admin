@@ -1,0 +1,103 @@
+.site-nav {
+    width: 256px;
+    position: fixed;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 22px 0 90px;
+    background-color: #ffffff;
+    box-shadow: 3px 0 11px 0 rgba(0, 0, 0, .1);
+
+    .sub-menu {
+        will-change: opacity, visibility, left;
+        opacity: 0;
+        visibility: hidden;
+        left: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background: #ffffff;
+        box-shadow: 8px 0 11px -5px rgba(0, 0, 0, 0.1) inset, 3px 0 11px 0 rgba(0, 0, 0, .1);
+        //transition: all $transition-time;
+        padding-top: 22px;
+
+        .site-nav__link {
+            padding: 13px 32px 12px;
+
+            &:hover {
+                box-shadow: 8px 0 11px -5px rgba(0, 0, 0, 0.1) inset;
+            }
+        }
+    }
+    > .site-nav__list {
+        overflow-y: auto;
+    }
+    &__list {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+    }
+    &__item {
+        list-style-type: none;
+
+        &_has-children {
+            > .site-nav__link {
+                position: relative;
+
+                &:after {
+                    content: "";
+                    width: 25px;
+                    height: 25px;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 32px;
+                    margin: auto;
+                    background: url("../images/arrow-right.svg") no-repeat center / cover;
+                }
+            }
+
+            &:hover {
+                > .sub-menu {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+
+    }
+    &__link {
+        @include font-size(16px);
+        font-family: $medium;
+        color: #86939e;
+        display: block;
+        padding: 15px 32px 14px;
+        text-decoration: none;
+
+        &:hover {
+            background-color: #f7f8f9;
+        }
+    }
+    .brand {
+        position: absolute;
+        bottom: 45px;
+        left: 47px;
+
+        &__img {
+            width: auto;
+        }
+    }
+
+    &:after {
+        content: "";
+        background-color: transparent;
+        width: 1px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+    }
+}

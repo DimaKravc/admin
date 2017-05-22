@@ -1,0 +1,14 @@
+.header {
+    background-color: #282e46;
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 100;
+
+    &__col {
+        display: flex;
+        align-items: center;
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "snake_14.04@mail.ru": {
+    "id": 123,
+    "name": "Dima",
+    "lastName": "Kravchenko",
+    "email": "snake_14.04@mail.ru",
+    "password": "2722116",
+    "role": "admin"
+  }
+}

@@ -1,0 +1,14 @@
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 23px;
+
+    &__col {
+        display: flex;
+        align-items: center;
+    }
+    &__title {
+        margin: 0 0 0 32px;
+    }
+}

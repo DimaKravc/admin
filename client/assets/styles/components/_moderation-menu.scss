@@ -1,0 +1,30 @@
+.moderation-menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0 5px;
+
+    &__trigger {
+        opacity: 0.4;
+        margin: 0 5px;
+
+        &:hover,
+        &:focus {
+            opacity: 1;
+        }
+    }
+    i[class^="i-"] {
+        width: 24px;
+        height: 24px;
+        display: block;
+    }
+    .i-accept {
+        background: url("../images/checked.svg") no-repeat center;
+    }
+    .i-reject {
+        background: url("../images/reject.svg") no-repeat center;
+    }
+    .i-manager {
+        background: url("../images/manager.svg") no-repeat center;
+    }
+}

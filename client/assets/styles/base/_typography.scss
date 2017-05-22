@@ -1,0 +1,110 @@
+@font-face {
+    font-family: 'roboto_regular';
+    src: url('../fonts/roboto_regular/Roboto-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto_medium';
+    src: url('../fonts/roboto_medium/Roboto-Medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto_bold';
+    src: url('../fonts/roboto_bold/Roboto-Bold.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'roboto_thin';
+    src: url('../fonts/roboto_thin/Roboto-Thin.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html,
+button,
+input,
+select,
+textarea {
+    font: #{$base-font-size}/#{$base-line-height} $regular;
+    color: $base-color;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font: inherit;
+    color: inherit;
+    min-width: 320px;
+    background: #f6f7f7;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-family: $medium;
+    font-weight: normal;
+    color: #5e6977;
+}
+
+h1 {
+    @include font-size(32px);
+}
+
+h2 {
+    @include font-size(20px);
+}
+
+h3 {
+    @include font-size(16px);
+}
+
+h4 {
+    @include font-size(14px);
+}
+
+h5 {
+    @include font-size(12px);
+}
+
+h6 {
+    @include font-size(10px);
+}
+
+b {
+    font-weight: normal;
+    font-family: $bold;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+a {
+    color: $primary-color;
+    outline: none;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}

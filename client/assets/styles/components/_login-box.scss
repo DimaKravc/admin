@@ -1,0 +1,59 @@
+.login-box {
+    width: 464px;
+    margin: 8px auto;
+    max-width: 90%;
+
+    &__header {
+        background: #ffffff;
+        padding: 22px 22px 18px;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+    }
+    &__title {
+        margin: 0;
+        @include font-size(17px);
+        font-family: $medium;
+    }
+    &__content {
+        text-align: center;
+        padding: 35px 0;
+        background: #f7f9fb;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+    &__footer {
+        margin: 25px 0;
+        text-align: center;
+        color: #ffffff;
+
+        a {
+            font-family: $medium;
+        }
+    }
+    &__form-footer {
+        margin-top: 32px;
+    }
+    .password-recovery-link {
+        display: inline-block;
+        margin-top: 12px;
+        @include font-size(13px);
+    }
+    &__info {
+        .success {
+            display: block;
+            width: 32px;
+            height: 32px;
+            margin: auto;
+            background: url("../images/checked.svg") no-repeat center / cover;
+        }
+        .user-email {
+            text-decoration: underline;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .login-box {
+        width: 300px;
+    }
+}

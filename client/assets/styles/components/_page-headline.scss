@@ -1,0 +1,6 @@
+.page-headline {
+    color: #ffffff;
+    @include font-size(20px);
+    margin: 0;
+    font-family: $regular;
+}

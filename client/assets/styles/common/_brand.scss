@@ -1,0 +1,18 @@
+.brand {
+    line-height: 0;
+
+    &__img {
+        width: 160px;
+    }
+    &__subtitle {
+        color: #ffffff;
+        text-transform: uppercase;
+        @include font-size(14px);
+        font-family: $thin;
+        line-height: normal;
+        text-align: center;
+        letter-spacing: 12px;
+        display: block;
+        margin: 8px 0 10px 9px;
+    }
+}
