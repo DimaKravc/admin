@@ -1,4 +1,21 @@
 .container {
     margin-top: 27px;
     padding: 0 24px;
+    transition: margin-left $transition-time;
+    will-change: margin-left;
+
+    &--pushed-right {
+        margin-left: 256px;
+    }
+    &--pushed-bottom {
+        margin-top: 91px;
+    }
+}
+
+@media (max-width: 1450px) {
+    .container {
+        &--pushed-right {
+            margin-left: 0;
+        }
+    }
 }

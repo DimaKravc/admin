@@ -17,7 +17,6 @@ export default class SelectField extends React.Component {
     }
     
     render() {
-        console.log(this.props.children);
         return(
             <div className="form-group">
                 <label className="form-group__label" htmlFor={this.props.id}>{this.props.labelText}</label>

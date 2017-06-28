@@ -9,6 +9,7 @@ export default {
         path.join(__dirname, '/client/assets/styles/styles.scss')
     ],
     output: {
+        path: '/',
         filename: 'bundle.js',
         publicPath: '/'
     },
@@ -25,7 +26,18 @@ export default {
                 loaders: ['react-hot-loader', 'babel-loader']
             },
             {
-                test: /\.scss/,
+                test: /\.(css)/,
+                use: [{
+                    loader: 'style-loader'
+                }, {
+                    loader: 'css-loader',
+                    options: {
+                        sourceMap: true
+                    }
+                }]
+            },
+            {
+                test: /\.(scss)/,
                 include: path.join(__dirname, '/client/assets/styles'),
                 use: [{
                     loader: 'style-loader'

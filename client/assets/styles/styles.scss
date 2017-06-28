@@ -10,7 +10,9 @@
 "common/button",
 "common/grid",
 "common/select",
-"common/checkbox";
+"common/checkbox",
+"common/site-overlay",
+"common/animations";
 
 // Components
 @import "components/app",
@@ -28,6 +30,10 @@
 "components/download-options",
 "components/query-form",
 "components/section",
-"components/data-view",
 "components/data-table",
-"components/moderation-menu";
+"components/edit-tool",
+"components/search-tool",
+"components/filter-tool",
+"components/moderation-menu",
+"components/sidebar",
+"components/pagination";

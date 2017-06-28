@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 export default class MerchantsNew extends React.Component {
     render() {
         return (
-            <div className="container" style={{marginLeft: "256px"}}>
+            <div>
                 <section className="section">
                     <header className="section__header">
                         <h2 className="section__title">

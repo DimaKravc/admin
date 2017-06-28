@@ -10,7 +10,7 @@ import RaisedButton from '../common/RaisedButton';
 export default class SearchOperations extends React.Component {
     render() {
         return (
-            <div className="container" style={{marginLeft: "256px"}}>
+            <div>
                 <header className="page-header">
                     <div className="page-header__col">
                         <h1 className="page-header__title">{this.props.pageTitle}</h1>

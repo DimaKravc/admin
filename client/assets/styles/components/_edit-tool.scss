@@ -1,0 +1,27 @@
+.edit-tool {
+    &__btn {
+        background: none;
+        border: none;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        color: #86939e;
+        cursor: pointer;
+        transition: color .13s ease-in;
+        
+        i[class*='material-icon'] {
+            @include font-size(12px);
+            margin: 0 2px;
+        }
+        &__text {
+                @include font-size(10px);
+        }
+
+        &:hover {
+            color: #43484d;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+}

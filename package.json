@@ -4,17 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon --watch server --exec babel-node -- server/index.js"
+    "server": "nodemon --ignore server/database/ --watch server --exec babel-node -- server/index.js"
   },
   "dependencies": {
     "axios": "^0.16.1",
     "body-parser": "^1.17.1",
+    "classnames": "^2.2.5",
+    "jsonwebtoken": "^7.4.1",
+    "jwt-decode": "^2.2.0",
+    "lodash": "^4.17.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-ink": "^6.2.0",
     "react-redux": "^5.0.4",
     "react-router-dom": "^4.1.1",
+    "react-select": "^1.0.0-rc.5",
+    "react-transition-group": "^1.1.3",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "validator": "^7.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -22,6 +30,7 @@
     "babel-plugin-wildcard": "^1.0.0",
     "babel-preset-env": "^1.4.0",
     "babel-preset-react": "^6.24.1",
+    "bcrypt": "^1.0.2",
     "css-loader": "^0.28.1",
     "express": "^4.15.2",
     "file-loader": "^0.11.1",

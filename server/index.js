@@ -7,13 +7,17 @@ import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack.config.js';
 
-import users from './routes/users';
+import api from './routes/api';
+import register from './routes/register';
+import auth from './routes/auth';
 
 let app = express();
 
 app.use(bodyParser.json());
 
-app.use('/api/users', users);
+app.use('/api/register', register);
+app.use('/api/auth', auth);
+app.use('/api/v1', api);
 
 const compiler = webpack(webpackConfig);
 

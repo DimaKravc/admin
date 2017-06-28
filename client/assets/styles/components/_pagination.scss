@@ -1,0 +1,105 @@
+.pagination {
+    @include font-size(12px);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 20px;
+
+    &__limiter {
+        display: flex;
+        align-items: center;
+        margin: 0;
+
+        dd {
+            margin-left: 8px;
+        }
+        .is-focused:not(.is-open) {
+            > .Select-control {
+                box-shadow: none;
+            }
+        }
+        .Select-control {
+            border: none;
+            outline: none;
+            min-width: 40px;
+            cursor: pointer;
+
+            .Select-value {
+                line-height: 36px;
+            }
+
+            &:hover {
+                box-shadow: none;
+
+                .Select-arrow-zone {
+                    .Select-arrow {
+                        border-top-color: #666;
+                    }
+                }
+            }
+        }
+        .Select-arrow-zone {
+            width: 11px;
+            padding-right: 0;
+
+            .Select-arrow {
+                border-width: 3px;
+                top: 2px;
+            }
+        }
+        .is-open {
+            .Select-arrow {
+                border-width: 0 3px 3px;
+                border-bottom-color: #666;
+                top: -2px;
+            }
+        }
+        .Select-menu-outer {
+            overflow: hidden;
+            max-width: 100%;
+            border: none;
+            box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        .Select-option {
+            &.is-focused,
+            &.is-selected {
+                background: #f7f8f9;
+            }
+        }
+        .Select-menu {
+            min-width: 60px;
+        }
+    }
+    &__view {
+        margin-left: 25px;
+        margin-right: 10px;
+    }
+    &__control {
+        position: relative;
+        border: none;
+        outline: none;
+        border-radius: 2px;
+        background: none;
+        color: #86939e;
+        padding: 0;
+        width: 24px;
+        height: 24px;
+        @include font-size(24px);
+        cursor: pointer;
+        margin: 0 6px;
+        user-select: none;
+        overflow: hidden;
+
+        &[disabled] {
+            opacity: .6;
+            pointer-events: none;
+        }
+        &:hover {
+            color: #43484d;
+        }
+        &--active {
+            color: #43484d;
+        }
+    }
+}

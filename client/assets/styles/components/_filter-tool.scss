@@ -1,0 +1,29 @@
+.filter-tool {
+    display: flex;
+    align-items: center;
+    &__btn {
+        border: none;
+        background: none;
+        outline: none;
+        border-radius: 3px;
+        padding: 0 8px;
+        font-family: $medium;
+        @include font-size(12px);
+        line-height: 32px;
+        color: $primary-color;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        [class*='material-icon'] {
+            margin-right: 4px;
+            margin-bottom: 5px;
+        }
+    }
+    &__period {
+        margin-left: 15px;
+    }
+}

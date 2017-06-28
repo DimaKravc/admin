@@ -5,10 +5,22 @@
     height: 64px;
     box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.1);
     position: relative;
-    z-index: 100;
+    z-index: 10;
 
     &__col {
         display: flex;
         align-items: center;
+    }
+    &--sticky {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .header {
+        z-index: 11;
     }
 }

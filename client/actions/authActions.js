@@ -1,15 +1,24 @@
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
-export function login(data) {
+import setAuthorizationToken from '../utils/setAuthorizationToken';
+import {setCurrentUser} from './setUser';
+
+export function logout() {
     return dispatch => {
-        // return axios.post('/api/auth', data).then(res => {
-        //     const token = res.data.token;
-        // }, console.log('reject'));
+        localStorage.removeItem('jwtToken');
+        setAuthorizationToken(false);
+        dispatch(setCurrentUser({}));
+    }
+}
 
-        return axios.get({
-            method: 'get',
-            url: 'https://cloud-api.yandex.net/v1/data/app/databases/users/?name=newUser',
-            headers: {'Authorization ': 'bc76d06ee4ec4c30ac2e55da8085adc8'}
+export function login(userData) {
+    return dispatch => {
+        return axios.post('/api/auth', userData).then(res=> {
+            const token = res.data.token;
+            localStorage.setItem('jwtToken', token);
+            setAuthorizationToken(token);
+            dispatch(setCurrentUser(jwtDecode(token)));
         })
     }
 }

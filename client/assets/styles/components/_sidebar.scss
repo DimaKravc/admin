@@ -1,0 +1,38 @@
+.sidebar {
+    width: 256px;
+    position: fixed;
+    top: 64px;
+    bottom: 0;
+    left: -256px;
+    padding: 22px 0 90px;
+    background-color: #ffffff;
+    box-shadow: 3px 0 11px 0 rgba(0, 0, 0, .1);
+    will-change: left, top;
+    transition: left $transition-time;
+    z-index: 12;
+
+    .brand {
+        position: absolute;
+        bottom: 45px;
+        left: 47px;
+
+        &__img {
+            width: auto;
+        }
+    }
+    &--visible {
+        left: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .sidebar {
+        overflow: hidden;
+        width: 300px;
+        left: -300px;
+
+        &--visible {
+            left: 0;
+        }
+    }
+}

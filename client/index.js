@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Router from './routes/Router'
-import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
-import thunk from 'redux-thunk';
+import configureStore from './store/configureStore';
+import jwtDecode from 'jwt-decode';
 
-const store = createStore(
-    (state = {}) => state,
-    applyMiddleware(thunk)
-);
+import 'react-select/dist/react-select.css';
+
+import setAuthorizationToken from './utils/setAuthorizationToken';
+import {setCurrentUser} from './actions/setUser';
+
+const store = configureStore();
+
+if (localStorage.jwtToken) {
+    setAuthorizationToken(localStorage.jwtToken);
+    store.dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+}
 
 const renderApp = () => {
     ReactDOM.render(
