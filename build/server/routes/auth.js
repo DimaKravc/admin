@@ -1,42 +1,43 @@
 var express = require('express');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
-var data = require('../database/datatable.json');
 var config = require('../config');
+var axios = require('axios');
 
-let router = express.Router();
+var router = express.Router();
 
 router.post('/', (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
+    var email = req.body.email;
+    var password = req.body.password;
+    
+    axios
+        .get(`http://5932a02f76652a0011dcf8b8.mockapi.io/api/v1/users?search=${email}`)
+        .then(innerRes => {
+            var userData = innerRes.data[0];
 
-    if (data.users[email]) {
-        let user = data.users[email];
+            if (innerRes.data.length) {
+                if (bcrypt.compareSync(password, userData.password)) {
 
-        if (bcrypt.compareSync(password, user.user_password)) {
+                    //Create JSON Web Token
+                    var token = jwt.sign({
+                        email: userData.email,
+                        name: userData.name,
+                        lastName: userData.lastName
+                    }, config.jwtSecret);
 
-            // Create JSON Web Token
-            const token = jwt.sign({
-                email: user.user_email,
-                name: user.user_name,
-                lastName: user.user_last_name
-            }, config.jwtSecret);
+                    res.json(JSON.stringify({token}));
+                } else {
+                    res.status(401).json(JSON.stringify({password: 'Неверный пароль'}));
+                }
+            } else {
+                res.status(401).json(JSON.stringify({email: 'Пользователь с таким email не найден'}));
+            }
 
-            // Server response delay imitation
-            setTimeout(() => {
-                res.json({token});
-            }, 1000)
-        } else {
+        }, err => {
             res
-                .status(401)
-                .json({password: 'Неверный пароль'});
-        }
-    } else {
-        res
-            .status(401)
-            .json({email: 'Пользователь с таким email не найден'});
-    }
-
+                .status(err.response.status)
+                .json(JSON.stringify({code: err.response.status, msg: err.response.statusText}))
+        });
 });
 
 module.exports = router;

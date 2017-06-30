@@ -3,7 +3,7 @@ var config = require('../config');
 var axios = require('axios');
 
 module.exports = (req, res, next) => {
-    const authorizationHeader = req.headers['authorization'];
+    var authorizationHeader = req.headers['authorization'];
     var token;
 
     if (authorizationHeader) {
