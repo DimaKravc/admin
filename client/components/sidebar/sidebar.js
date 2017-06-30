@@ -15,9 +15,13 @@ class Sidebar extends React.Component {
 
     setContainerTopOffset() {
         if (!this.props.topBar.isSticky) {
-            window.addEventListener('scroll', ()=> {
+            window.addEventListener('scroll', () => {
                 let currentScroll = this.state.topOffset - window.pageYOffset;
-                this.setState({currentTopOffset: currentScroll > 0 ? currentScroll : 0});
+                this.setState({
+                    currentTopOffset: currentScroll > 0
+                        ? currentScroll
+                        : 0
+                });
             })
         }
     }
@@ -26,7 +30,7 @@ class Sidebar extends React.Component {
         this.setContainerTopOffset();
 
         let {breakPoint, changeSidebar, changeOverlay} = this.props;
-        window.addEventListener('resize', ()=> {
+        window.addEventListener('resize', () => {
             if (document.documentElement.clientWidth < breakPoint) {
                 changeSidebar('hide');
                 changeOverlay('self');
@@ -38,7 +42,9 @@ class Sidebar extends React.Component {
         return (
             <aside
                 className={classNames('sidebar', {'sidebar--visible': this.props.sidebar.isShow})}
-                style={{top: this.state.currentTopOffset + "px"}}>
+                style={{
+                top: this.state.currentTopOffset + "px"
+            }}>
                 <SiteMenu {...this.props}/>
                 <div className="brand">
                     <img

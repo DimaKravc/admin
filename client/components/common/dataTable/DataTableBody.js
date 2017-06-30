@@ -22,7 +22,7 @@ class DataTableBody extends React.Component {
                     } else {
                         let columnValue = fieldValue && fieldValue.toString();
 
-                        if (column.render && column.render()) {
+                        if (column.render && column.render(fieldValue)) {
                             const renderedValue = column.render(fieldValue);
 
                             if (!React.isValidElement(renderedValue)) {

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import DatePicker from 'material-ui/DatePicker';
+import TimePicker from 'material-ui/TimePicker';
 
 class TextFieldGroup extends React.Component {
     constructor(props) {
@@ -12,28 +14,40 @@ class TextFieldGroup extends React.Component {
             complexityPassword: ""
         };
 
-        this.handleFocus = this.handleFocus.bind(this);
-        this.handleFocusOut = this.handleFocusOut.bind(this);
-        this.handleShowPassword = this.handleShowPassword.bind(this);
-        this.complexPasswordValidate = this.complexPasswordValidate.bind(this);
+        this.handleFocus = this
+            .handleFocus
+            .bind(this);
+        this.handleFocusOut = this
+            .handleFocusOut
+            .bind(this);
+        this.handleShowPassword = this
+            .handleShowPassword
+            .bind(this);
+        this.complexPasswordValidate = this
+            .complexPasswordValidate
+            .bind(this);
+        this.handleChangeDate = this
+            .handleChangeDate
+            .bind(this);
+        this.handleChangeTime = this
+            .handleChangeTime
+            .bind(this);
     }
 
     handleFocus() {
-        this.setState({
-            focused: true
-        })
+        this.setState({focused: true})
     }
 
     handleFocusOut() {
-        this.setState({
-            focused: false
-        })
+        this.setState({focused: false})
     }
 
     handleShowPassword() {
-        this.setState((prevState)=> {
+        this.setState((prevState) => {
             return {
-                type: prevState.type === "password" ? "text" : "password"
+                type: prevState.type === "password"
+                    ? "text"
+                    : "password"
             }
         })
     }
@@ -62,10 +76,31 @@ class TextFieldGroup extends React.Component {
             }
         };
 
-        this.setState({
-            complexityPassword: className()
-        });
+        this.setState({complexityPassword: className()});
+    }
 
+    handleChangeDate(event, date) {
+        const {field, onChange} = this.props;
+
+        if (onChange) {
+            if (date) {
+                onChange(null, field, date)
+            } else {
+                onChange(event)
+            }
+        }
+    }
+
+    handleChangeTime(event, date) {
+        const {field, onChange} = this.props;
+
+        if (onChange) {
+            if (date) {
+                onChange(null, field, date)
+            } else {
+                onChange(event)
+            }
+        }
     }
 
     render() {
@@ -73,38 +108,68 @@ class TextFieldGroup extends React.Component {
             <div className="form-group">
                 <label
                     className={classNames('form-group__label', {'focused': this.state.focused})}
-                    htmlFor={this.props.field}
-                >
+                    htmlFor={this.props.field}>
                     {this.props.label}
                 </label>
                 <div
-                    className={classNames('form-group__field--wrap', {'focused': this.state.focused, 'has-error': this.props.error})}>
-                    <input className="form-group__field"
-                           type={this.state.type}
-                           id={this.props.field}
-                           name={this.props.field}
-                           placeholder={this.props.placeholder}
-                           value={this.props.value}
-                           onChange={(event)=>{
-                                this.props.onChange(event);
-                                this.props.complexPassword && this.complexPasswordValidate(event);
-                           }}
-                           onFocus={this.handleFocus}
-                           onBlur={(event)=>{
-                                this.handleFocusOut(event);
-                                this.props.checkUserExists && this.props.checkUserExists(event);
-                           }}
-                    />
-                    {this.props.checkUserExistStatus && emailStatusTemplate(this.props.checkUserExistStatus)}
-                    {this.props.displayPassword &&
-                    <span className="form-group__password-trigger password-trigger" onClick={this.handleShowPassword}>
-                        <i className="password-trigger__icon material-icons"
-                           style={{color: this.state.type === "password" ? "#beccd8" : "#00ACC1"}}>remove_red_eye</i>
+                    className={classNames('form-group__field--wrap', {
+                    'focused': this.state.focused,
+                    'has-error': this.props.error
+                })}>
+                    <input
+                        className={classNames('form-group__field', {
+                        'offset-right': this.props.date || this.props.time
+                    })}
+                        type={this.state.type}
+                        id={this.props.field}
+                        name={this.props.field}
+                        placeholder={this.props.placeholder}
+                        value={this.props.value}
+                        onChange={(event) => {
+                        this
+                            .props
+                            .onChange(event);
+                        this.props.complexPassword && this.complexPasswordValidate(event);
+                    }}
+                        onFocus={this.handleFocus}
+                        onBlur={(event) => {
+                        this.handleFocusOut(event);
+                        this.props.checkUserExists && this
+                            .props
+                            .checkUserExists(event);
+                    }}/> {this.props.checkUserExistStatus && emailStatusTemplate(this.props.checkUserExistStatus)}
+                    {this.props.displayPassword && <span
+                        className="form-group__password-trigger password-trigger"
+                        onClick={this.handleShowPassword}>
+                        <i
+                            className="password-trigger__icon material-icons"
+                            style={{
+                            color: this.state.type === "password"
+                                ? "#beccd8"
+                                : "#00ACC1"
+                        }}>remove_red_eye</i>
                     </span>
-                    }
+}
+                    {this.props.date && <span className="form-group__date-trigger date-trigger">
+                        <DatePicker
+                            hintText="Date Picker"
+                            className='date-trigger__hidden'
+                            onChange={this.handleChangeDate}/>
+                        <i className="date-trigger__icon material-icons">&#xE916;</i>
+                    </span>}
+
+                    {this.props.time && <span className="form-group__time-trigger time-trigger">
+                        <div className='date-trigger__hidden'>
+                            <TimePicker
+                                format="24hr"
+                                hintText="Time Picker"
+                                onChange={this.handleChangeTime}/>
+                        </div>
+                        <i className="time-trigger__icon material-icons">&#xE192;</i>
+                    </span>}
                 </div>
-                {this.props.complexPassword &&
-                <span className={"form-group__password-status " + this.state.complexityPassword}/>}
+                {this.props.complexPassword && <span
+                    className={"form-group__password-status " + this.state.complexityPassword}/>}
                 {this.props.error && <span className="form-group__error-msg">{this.props.error}</span>}
             </div>
         )
@@ -114,25 +179,24 @@ class TextFieldGroup extends React.Component {
 const emailStatusTemplate = (status) => {
     return (
         <span className="form-group__email-status">
-                {status === 'loading' &&
-                <svg className="form-group__email-status_type_spinner"
-                     width="20px"
-                     height="20px"
-                     viewBox="0 0 66 66"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <circle
-                        fill="none"
-                        strokeWidth="6"
-                        strokeLinecap="round"
-                        cx="33"
-                        cy="33"
-                        r="30"
-                    />
-                </svg>
-                }
+            {status === 'loading' && <svg
+                className="form-group__email-status_type_spinner"
+                width="20px"
+                height="20px"
+                viewBox="0 0 66 66"
+                xmlns="http://www.w3.org/2000/svg">
+                <circle
+                    fill="none"
+                    strokeWidth="6"
+                    strokeLinecap="round"
+                    cx="33"
+                    cy="33"
+                    r="30"/>
+            </svg>
+}
             {status === 'success' && <i className="form-group__email-status_type_success material-icons">done</i>}
             {status === 'failure' && <i className="form-group__email-status_type_fail material-icons">close</i>}
-            </span>
+        </span>
     )
 };
 

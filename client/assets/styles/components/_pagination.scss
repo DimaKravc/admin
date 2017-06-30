@@ -92,7 +92,7 @@
         overflow: hidden;
 
         &[disabled] {
-            opacity: .6;
+            opacity: .5;
             pointer-events: none;
         }
         &:hover {

@@ -7,7 +7,7 @@ import {setCurrentUser} from './setUser';
 export function userSignUpRequest(userData) {
     return dispatch => {
         return axios.post('/api/register', userData).then(res=> {
-            const token = res.data.token;
+            const token = JSON.parse(res.data).token;
             localStorage.setItem('jwtToken', token);
             setAuthorizationToken(token);
             dispatch(setCurrentUser(jwtDecode(token)));

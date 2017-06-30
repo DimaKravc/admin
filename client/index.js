@@ -10,6 +10,11 @@ import 'react-select/dist/react-select.css';
 import setAuthorizationToken from './utils/setAuthorizationToken';
 import {setCurrentUser} from './actions/setUser';
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
+
 const store = configureStore();
 
 if (localStorage.jwtToken) {
@@ -20,10 +25,10 @@ if (localStorage.jwtToken) {
 const renderApp = () => {
     ReactDOM.render(
         <Provider store={store}>
-            <Router />
-        </Provider>,
-        document.getElementById('app')
-    )
+        <MuiThemeProvider>
+            <Router/>
+        </MuiThemeProvider>
+    </Provider>, document.getElementById('app'))
 };
 
 renderApp();

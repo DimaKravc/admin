@@ -1,0 +1,30 @@
+.form-grouped {
+    margin-bottom: 10px;
+    &__label {
+        @include font-size(12px);
+        color: #5e6977;
+        line-height: 1;
+        display: inline-block;
+        padding-bottom: 5px;
+        letter-spacing: 0.12px;
+        cursor: pointer;
+    }
+    &__row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .form-group {
+            width: 46%;
+            margin: 0 0 15px;
+            display: flex;
+            align-items: center;
+            .form-group__label {
+                padding: 0;
+                margin-right: 6px;
+            }
+            &__field--wrap {
+                width: 100%;
+            }
+        }
+    }
+}

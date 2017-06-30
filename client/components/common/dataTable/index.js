@@ -13,7 +13,7 @@ import DataTableHead from './DataTableHead';
 import DataTableBody from './DataTableBody';
 import DataTablePagination from './pagination/index';
 
-class Data extends React.Component {
+class DataTable extends React.Component {
     constructor(props) {
         super(props);
 
@@ -114,7 +114,7 @@ class Data extends React.Component {
     }
 
     render() {
-        const {dataTitle, children, pagination, paginationOptions} = this.props;
+        const {dataTitle, children, pagination, paginationOptions, view={}} = this.props;
         const {isLoadingData, data, noDataText, currPage, sizePerPage} = this.state;
         const columns = this.getColumnsDescription(this.props);
         const colGroups = Util.renderColGroup(columns);
@@ -128,11 +128,12 @@ class Data extends React.Component {
         return (
             <div
                 className={classNames('data-table--container', {'is-loading': isLoadingData})}>
-                <div className={classNames('data-table')}>
-                    {/*<DataToolBar
+                <div className={classNames('data-table', {'bordered': view.bordered, 'striped': view.striped, 'hover': view.hover, 'condensed': view.condensed})}>
+                    <DataToolBar
                         dataTitle={dataTitle}
-                        onEdit={this.handleEdit}
-                        onSearch={this.handleSearch}/>*/}
+                        //onEdit={this.handleEdit}
+                        //onSearch={this.handleSearch}
+                        />
                     <div className="data-table__box">
                         <DataTableHead
                             colGroups={colGroups}
@@ -193,7 +194,7 @@ class Data extends React.Component {
     }
 }
 
-Data.propTypes = {
+DataTable.propTypes = {
     tableContainerClass: PropTypes.string,
     tableContainerStyle: PropTypes.object,
     tableClass: PropTypes.string,
@@ -233,4 +234,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, {getAction})(Data)
+export default connect(mapStateToProps, {getAction})(DataTable)

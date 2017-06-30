@@ -51,7 +51,7 @@ class DataTableHeadColumn extends React.Component {
         }
         return (
             <th onClick={this.handleColumnClick} rowSpan={rowSpan} colSpan={colSpan}>
-                {sortCaret}{title}
+                {title}{sortCaret}
             </th>
         )
     }

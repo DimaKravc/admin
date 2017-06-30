@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 import validateInput from '../../actions/validations/signup';
 import TextFieldGroup from '../common/TextFieldGroup';
-import RaisedButton from '../common/RaisedButton';
+import Button from '../common/Button';
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -14,16 +14,22 @@ class SignIn extends React.Component {
             email: '',
             password: '',
             errors: {},
-            isLoading: false,
+            submitDisabled: false,
             invalid: false
         };
 
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.onChange = this
+            .onChange
+            .bind(this);
+        this.onSubmit = this
+            .onSubmit
+            .bind(this);
     }
 
     onChange(event) {
-        this.setState({[event.target.name]: event.target.value});
+        this.setState({
+            [event.target.name]: event.target.value
+        });
     }
 
     isValid(type) {
@@ -45,12 +51,19 @@ class SignIn extends React.Component {
         };
 
         if (this.isValid(validationOptions)) {
-            this.setState({errors: {}, isLoading: true});
-            this.props.login(this.state).then(() => {
-                    this.context.router.history.push('/')
-                },
-                (err) => this.setState({errors: err.response.data, isLoading: false})
-            )
+            this.setState({errors: {}, submitDisabled: true});
+            this
+                .props
+                .login(this.state)
+                .then(() => {
+                    this
+                        .context
+                        .router
+                        .history
+                        .push('/')
+                }, (err) => {
+                    this.setState({submitDisabled: false, errors: JSON.parse(err.response.data)})
+                })
         }
     }
 
@@ -60,7 +73,10 @@ class SignIn extends React.Component {
             <div className="login-page--wrap">
                 <div className="login-page">
                     <h1 className="brand">
-                        <img className="brand__img" src={require('../../assets/images/paymo-logo.svg')} alt=""/>
+                        <img
+                            className="brand__img"
+                            src={require('../../assets/images/paymo-logo.svg')}
+                            alt=""/>
                         <span className="brand__subtitle">Admin</span>
                     </h1>
 
@@ -71,7 +87,7 @@ class SignIn extends React.Component {
                         <div className="login-box__content">
                             <form className="login-form" noValidate="novalidate" onSubmit={this.onSubmit}>
 
-                                { errors.form && <div className="login-form__error-msg">{errors.form}</div> }
+                                {errors.form && <div className="login-form__error-msg">{errors.form}</div>}
 
                                 <TextFieldGroup
                                     error={errors.email}
@@ -79,8 +95,7 @@ class SignIn extends React.Component {
                                     field="email"
                                     label="Адрес электронной почты:"
                                     placeholder="username@mail.com"
-                                    onChange={this.onChange}
-                                />
+                                    onChange={this.onChange}/>
                                 <TextFieldGroup
                                     error={errors.password}
                                     type="password"
@@ -88,25 +103,23 @@ class SignIn extends React.Component {
                                     label="Пароль:"
                                     placeholder="••••••"
                                     displayPassword={true}
-                                    onChange={this.onChange}
-                                />
+                                    onChange={this.onChange}/>
                                 <div className="login-form__footer">
-                                    <RaisedButton
+                                    <Button
                                         type="submit"
                                         text="Войти"
-                                        wave={true}
-                                        className="primary"
-                                        disabled={this.state.isLoading}
-                                    />
+                                        wave
+                                        className="style-1"
+                                        disabled={this.state.submitDisabled}/>
                                     <div>
-                                        <Link to="/restore" className="password-recovery-link">Восстановить
-                                            пароль</Link>
+                                        <Link to="/restore" className="password-recovery-link">Восстановить пароль</Link>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div className="login-box__footer">
-                            У вас нет учетной записи? <Link to="/signup">Зарегистрироваться</Link>
+                            У вас нет учетной записи?&nbsp;
+                            <Link to="/signup">Зарегистрироваться</Link>
                         </div>
                     </div>
                 </div>

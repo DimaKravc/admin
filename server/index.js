@@ -13,8 +13,6 @@ import auth from './routes/auth';
 
 let app = express();
 
-app.use(bodyParser.json());
-
 app.use('/api/register', register);
 app.use('/api/auth', auth);
 app.use('/api/v1', api);

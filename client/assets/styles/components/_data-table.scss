@@ -3,6 +3,25 @@
         table-layout: fixed;
         width: 100%;
         max-width: 100%;
+        @include font-size(12px);
+        border-collapse: collapse;
+        text-align: left;
+        th {
+            font-weight: normal;
+            color: #86939e;
+        }
+        th,
+        td {
+            vertical-align: top;
+            line-height: 16px;
+            padding: 12px 8px;
+        }
+        td {
+            color: #43484d;
+        }
+    }
+    &--container {
+        margin-bottom: 25px;
     }
     &__toolbar {
         display: flex;
@@ -29,14 +48,98 @@
         background-color: #ffffff;
         border-radius: 6px;
         box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.1);
+        padding: 10px 31px;
     }
     &__head--container {
         overflow: hidden;
         width: 100%;
+        border-bottom: 1px solid #e1e8ee;
     }
     &__body--container {
         width: 100%;
         overflow: auto;
+    }
+    &.bordered {
+        th,
+        td {
+            border: 1px solid #e1e8ee;
+        }
+    }
+    &.striped {
+        .data-table__body {
+            tbody {
+                tr:nth-child(even) {
+                    background-color: rgba(225, 232, 238, 0.4);
+                }
+            }
+        }
+    }
+    &.hover {
+        .data-table__body {
+            tbody {
+                tr:hover {
+                    background-color: rgba(225, 232, 238, 0.6);
+                }
+            }
+        }
+    }
+    &.condensed {
+        table {
+            th,
+            td {
+                padding: 8px;
+            }
+        }
+    }
+    .merchants-render,
+    .merchants-mod-render {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &__status {
+            .active {
+                color: #00bcd4;
+            }
+            .connected {
+                color: #43a047;
+            }
+            .verify {
+                color: #53bbb3;
+            }
+            .pending {
+                color: #ff8f00;
+            }
+        }
+        .merchants-render__trigger {
+            margin: 0 3px;
+            cursor: pointer;
+            color: #c7ced4;
+            &:hover {
+                color: #86939e;
+            }
+        }
+    }
+    .merchants-mod-render {
+        >div {
+            display: flex;
+            align-items: center;
+        }
+        &__trigger {
+            cursor: pointer;
+            margin: 0 5px;
+            &.accept {
+                color: #b6e8cf;
+                &:hover {
+                    color: #5cd392;
+                }
+            }
+            &.reject {
+                color: #e1a3a4;
+                &:hover {
+                    color: #c62828;
+                }
+            }
+        }
     }
 }
 

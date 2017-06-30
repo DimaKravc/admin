@@ -1,25 +1,20 @@
 .checkbox {
+    padding: 15px 0;
     &__input {
-        height: 0;
-        width: 0;
-        visibility: hidden;
-        opacity: 0;
-
+        display: none;
         &:hover,
         &:focus {
-            + .checkbox__label {
+            +.checkbox__label {
                 .checkbox__checked-icon {
                     background: rgba(255, 255, 255, .1);
                 }
             }
         }
-
         &:checked {
-            + .checkbox__label {
+            +.checkbox__label {
                 .checkbox__checked-icon {
                     border: 9px solid #86939e;
-                    animation: shrink-bounce .18 ease;
-
+                    animation: shrink-bounce .18s ease;
                     &:before {
                         transform: scale(1);
                     }
@@ -47,7 +42,6 @@
         border-radius: 2px;
         cursor: pointer;
         transition: all 250ms cubic-bezier(.4, .0, .23, 1);
-
         &:before {
             content: "";
             position: absolute;

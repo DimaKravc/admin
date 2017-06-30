@@ -3,19 +3,23 @@ import React from 'react';
 import DataTable from '../common/dataTable/index';
 import DataTableHeadColumn from '../common/dataTable/DataTableHeadColumn';
 
-class NewMerchants extends React.Component {
+class ModMerchants extends React.Component {
     render() {
         const data = [];
 
         for (let i = 0; i < 11; i++) {
             data.push({
+                claimDate: `my-claim-date-${i}`,
                 registrationDate: i,
                 organizationName: `my-organization-name-${i}`,
                 email: `my-email-address-${i}`,
                 partner: `my-partner-name-${i}`,
                 promocode: `my-promocode-${i}`,
                 trafficSource: `my-trafficSource-${i}`,
-                clientStatus: `my-client-status-${i}`
+                clientStatus: `my-client-status-${i}`,
+                clientCategory: `my-client-categorys-${i}`,
+                storeName: `my-store-name-${i}`,
+                storeURL: `my-store-url-${i}`
             })
         }
 
@@ -24,7 +28,7 @@ class NewMerchants extends React.Component {
                 view={{
                 striped: true
             }}
-                dataTitle={'Новые мерчанты'}
+                dataTitle={'Ожидающие модерации мерчанты'}
                 data={data}
                 pagination={true}
                 paginationOptions={{
@@ -38,17 +42,23 @@ class NewMerchants extends React.Component {
                     50
                 ]
             }}>
-                <DataTableHeadColumn dataIndex='registrationDate' title='Дата регистрации'/>
+                <DataTableHeadColumn dataIndex='claimDate' title='Дата заявки'/>
                 <DataTableHeadColumn
                     dataIndex='organizationName'
                     title='Наименование мерчанта'/>
-                <DataTableHeadColumn dataIndex='email' title='Адрес электронной почты'/>
-                <DataTableHeadColumn dataIndex='partner' title='Партнер'/>
-                <DataTableHeadColumn dataIndex='promocode' title='Промо-код'/>
-                <DataTableHeadColumn dataIndex='trafficSource' title='Источник трафик'/>
+                <DataTableHeadColumn dataIndex='storeName' title='Название магазина'/>
+                <DataTableHeadColumn
+                    dataIndex='storeURL'
+                    title='URL магазина'
+                    render={value => {
+                    return (
+                        <a href="#">{value}</a>
+                    )
+                }}/>
+                <DataTableHeadColumn dataIndex='clientCategory' title='Категория магазина'/>
                 <DataTableHeadColumn
                     dataIndex='clientStatus'
-                    title='Статус'
+                    title='Тип'
                     render={(value) => {
                     let statusClassName;
                     if (value == 'my-client-status-0') {
@@ -61,12 +71,17 @@ class NewMerchants extends React.Component {
                         statusClassName = 'pending'
                     }
                     return (
-                        <div className='merchants-render'>
-                            <div className="merchants-render__status">
+                        <div className='merchants-mod-render'>
+                            <div className="merchants-mod-render__status">
                                 <b className={statusClassName}>{value}</b>
                             </div>
-                            <div className="merchants-render__trigger">
-                                <i className="material-icons">&#xE7EF;</i>
+                            <div>
+                                <div className="merchants-mod-render__trigger accept">
+                                    <i className="material-icons">&#xE876;</i>
+                                </div>
+                                <div className="merchants-mod-render__trigger reject">
+                                    <i className="material-icons">&#xE14C;</i>
+                                </div>
                             </div>
                         </div>
                     )
@@ -76,4 +91,4 @@ class NewMerchants extends React.Component {
     }
 }
 
-export default NewMerchants;
+export default ModMerchants;

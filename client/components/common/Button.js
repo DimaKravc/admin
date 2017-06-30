@@ -10,20 +10,22 @@ class Button extends React.Component {
     }
 
     handleClick(event) {
-        event.preventDefault();
-
-        this.props.callback && this.props.callback()
+        if (this.props.callback) {
+            event.preventDefault();
+            this.props.callback();
+        }
     }
 
     render() {
-        const { className, style, type, text, wave } = this.props;
+        const { className, style, type, text, disabled, wave } = this.props;
 
         return (
             <button
                 className={classNames('button', { [className]: className })}
                 style={style}
                 type={type}
-                onClick={this.handleClick}>
+                onClick={this.handleClick}
+                disabled={disabled}>
                 <div className="button__inner--overlay">
                     <div className="button__inner">
                         {text}

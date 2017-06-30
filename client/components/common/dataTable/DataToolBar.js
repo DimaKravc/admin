@@ -108,8 +108,8 @@ class DataToolBar extends React.Component {
     }
     renderFilterTool() {
         const {filterable} = this.props;
-
-        if (!Object.keys(filterable).length) 
+        
+        if (!filterable) 
             return null;
         
         return (
@@ -195,6 +195,7 @@ class DataToolBar extends React.Component {
         const addTool = this.renderAddTool();
         const searchTool = this.renderSearchTool();
         const filterTool = this.renderFilterTool();
+
 
         return (
             <div
