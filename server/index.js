@@ -1,23 +1,25 @@
-import express from 'express';
-import path from 'path';
-import bodyParser from 'body-parser';
+var express = require('express');
+var path = require('path');
+var bodyParser = require('body-parser');
 
 import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack.config.js';
 
-import api from './routes/api';
-import register from './routes/register';
-import auth from './routes/auth';
+var api = require('./routes/api');
+var register = require('./routes/register');
+var auth = require('./routes/auth');
 
-let app = express();
+var app = express();
+
+app.use(bodyParser.json());
 
 app.use('/api/register', register);
 app.use('/api/auth', auth);
 app.use('/api/v1', api);
 
-const compiler = webpack(webpackConfig);
+var compiler = webpack(webpackConfig);
 
 app.use(webpackMiddleware(compiler, {
     hot: true,

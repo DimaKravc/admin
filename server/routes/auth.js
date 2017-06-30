@@ -1,23 +1,25 @@
-import express from 'express';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import config from '../config';
-import axios from 'axios';
+var express = require('express');
+var bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
+var config = require('../config');
+var axios = require('axios');
 
-let router = express.Router();
+var router = express.Router();
 
 router.post('/', (req, res) => {
-    const {email, password} = req.body;
+    var email = req.body.email;
+    var password = req.body.password;
+    
     axios
         .get(`http://5932a02f76652a0011dcf8b8.mockapi.io/api/v1/users?search=${email}`)
         .then(innerRes => {
-            let userData = innerRes.data[0];
+            var userData = innerRes.data[0];
 
             if (innerRes.data.length) {
                 if (bcrypt.compareSync(password, userData.password)) {
 
                     //Create JSON Web Token
-                    const token = jwt.sign({
+                    var token = jwt.sign({
                         email: userData.email,
                         name: userData.name,
                         lastName: userData.lastName
@@ -38,4 +40,4 @@ router.post('/', (req, res) => {
         });
 });
 
-export default router;
+module.exports = router;

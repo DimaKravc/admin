@@ -93,31 +93,33 @@ $duration: 1.4s;
             padding: 5px 0;
             line-height: 14px;
         }
-        .Select-control {
-            border-style: solid;
-            border-width: 0 0 1px 0;
-            border-color: #878a8d;
-            background: transparent;
-            border-radius: 0;
-            height: 24px;
-            .Select-value {
-                padding: 5px 0;
-                line-height: 15px;
-                .Select-value-label {
+        &.Select--single {
+            >.Select-control {
+                border-style: solid;
+                border-width: 0 0 1px 0;
+                border-color: #878a8d;
+                background: transparent;
+                border-radius: 0;
+                height: 24px;
+                .Select-value {
+                    padding: 5px 0;
+                    line-height: 15px;
+                    .Select-value-label {
+                        font-family: $medium;
+                        color: #6b7582;
+                    }
+                }
+                .Select-input {
+                    height: 24px;
+                    padding: 5px 0;
+                    line-height: 15px;
                     font-family: $medium;
                     color: #6b7582;
-                }
-            }
-            .Select-input {
-                height: 24px;
-                padding: 5px 0;
-                line-height: 15px;
-                font-family: $medium;
-                color: #6b7582;
-                >input {
-                    color: #6b7582;
-                    padding: 0;
-                    height: 15px;
+                    >input {
+                        color: #6b7582;
+                        padding: 0;
+                        height: 15px;
+                    }
                 }
             }
         }
